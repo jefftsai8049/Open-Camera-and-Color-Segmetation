@@ -30,9 +30,9 @@
    <widget class="QPushButton" name="closeCam_pushButton">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>110</y>
-      <width>141</width>
+      <x>20</x>
+      <y>100</y>
+      <width>121</width>
       <height>61</height>
      </rect>
     </property>
@@ -50,6 +50,13 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_image_file"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -60,6 +67,11 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen_image_file">
+   <property name="text">
+    <string>Open image file</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

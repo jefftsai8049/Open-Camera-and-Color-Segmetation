@@ -1,6 +1,8 @@
 #include "camera.h"
 
-camera::camera()
+
+camera::camera(QObject *parent) :
+    QThread(parent)
 {
 
 }
@@ -18,21 +20,24 @@ void camera::run()
     this->status = true;
 
     //main while loop, read and read webcam image again
-    while(this->status)
-    {
+//    while(this->status)
+//    {
         //capture image from webcam
         cap.read(src);
         //show image
-        cv::imshow("src",src);
+//        cv::imshow("src",src);
+        emit sentImage(src);
         //because the webcam FPS (frame per second) usually 30, 1000(msec)/30(FPS)~=33(msec)
         cv::waitKey(33);
-    }
+//    }
     //terminate the imshow window
-    cv::destroyWindow("src");
+//    cv::destroyWindow("src");
 
     //release the webcam
     cap.release();
 }
+
+
 
 void camera::receiveStopCam(const bool &status)
 {

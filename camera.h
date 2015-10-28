@@ -8,13 +8,17 @@
 
 class camera : public QThread
 {
+    Q_OBJECT
+
 public:
-    camera();
+    explicit camera(QObject *parent = 0);
     void receiveStopCam(const bool &status);
 protected:
     void run();
 private:
     bool status;
+signals:
+    void sentImage(const cv::Mat &src);
 
 
 };

@@ -2,3 +2,4 @@ Makefile*
 release/
 debug/
 *.mp4
+*.jpg

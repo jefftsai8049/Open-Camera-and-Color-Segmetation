@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -26,10 +27,12 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionOpen_image_file;
     QWidget *centralWidget;
     QPushButton *openCam_pushButton;
     QPushButton *closeCam_pushButton;
     QMenuBar *menuBar;
+    QMenu *menuFile;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -38,6 +41,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(400, 300);
+        actionOpen_image_file = new QAction(MainWindow);
+        actionOpen_image_file->setObjectName(QStringLiteral("actionOpen_image_file"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         openCam_pushButton = new QPushButton(centralWidget);
@@ -45,11 +50,13 @@ public:
         openCam_pushButton->setGeometry(QRect(20, 20, 121, 61));
         closeCam_pushButton = new QPushButton(centralWidget);
         closeCam_pushButton->setObjectName(QStringLiteral("closeCam_pushButton"));
-        closeCam_pushButton->setGeometry(QRect(40, 110, 141, 61));
+        closeCam_pushButton->setGeometry(QRect(20, 100, 121, 61));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 400, 21));
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -57,6 +64,9 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menuFile->menuAction());
+        menuFile->addAction(actionOpen_image_file);
 
         retranslateUi(MainWindow);
 
@@ -66,8 +76,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        actionOpen_image_file->setText(QApplication::translate("MainWindow", "Open image file", 0));
         openCam_pushButton->setText(QApplication::translate("MainWindow", "Open", 0));
         closeCam_pushButton->setText(QApplication::translate("MainWindow", "Close", 0));
+        menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 
 };
